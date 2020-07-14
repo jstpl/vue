@@ -9,30 +9,95 @@ Babel, and Bootstrap-Vue JS to the <head> section -->
     <!--<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>-->
 
-    <link href="src/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="src/vendor/bootstrap/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="src/vendor/bootstrap4/bootstrap.min.css" rel="stylesheet">
+    <link href="src/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+    <!--    <link href="src/vendor/bootstrap/bootstrap-theme.min.css" rel="stylesheet">-->
 
     <script data-main="src/index?ver=4" src="src/vendor/require.js"></script>
 </head>
 <body>
 
 <div id="app">
-    <p>
-        <!-- используем компонент router-link для навигации -->
-        <!-- входной параметр `to` определяет URL для перехода -->
-        <!-- `<router-link>` по умолчанию отображается тегом `<a>` -->
-        <router-link to="/foo">Foo</router-link>
-        |
-        <router-link to="/chat">ChatList</router-link>
-        |
-        <router-link to="/user/1">user/1</router-link>
-        |
-        <router-link to="/user/2">user/2</router-link>
-        |
-        <router-link to="/qwerty">qwerty</router-link>
-    </p>
-    <!-- отображаем тут компонент, для которого совпадает маршрут -->
-    <router-view></router-view>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <router-link class="navbar-brand" class="nav-link" to="/">
+            <img alt="Vue" style="width: 32px;" src="/resource/image/sf-positive.svg"/>
+        </router-link>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <div class="collapse navbar-collapse justify-content-between" id="navbar">
+                <div class="navbar-nav">
+                    <span class="nav-item">
+                        <router-link class="nav-link" to="/chat">Chat</router-link>
+                    </span>
+                    <span class="nav-item">
+                        <router-link class="nav-link" to="/qwerty">qwerty</router-link>
+                    </span>
+                </div>
+                <div class="navbar-nav">
+                    <span class="nav-item">
+                        <router-link class="nav-link" to="/auth">
+                            Auth
+                        </router-link>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 20px;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/" class=""><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li class="breadcrumb-item">Dashboard</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-md-8">
+                <!-- отображаем тут компонент, для которого совпадает маршрут -->
+                <router-view></router-view>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="float-right">
+                            <a href="/article">Show all</a>
+                        </div>
+                        <div class="float-left">
+                            Posts
+                        </div>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="/article/view/3" class="list-group-item">
+                            post 3
+                            <span class="badge">category 3</span>
+                        </a>
+                        <a href="/article/view/4" class="list-group-item">
+                            post 4
+                            <span class="badge">category 1</span>
+                        </a>
+                        <a href="/article/view/5" class="list-group-item">
+                            post 5
+                            <span class="badge">category 2</span>
+                        </a>
+                        <a href="/article/view/6" class="list-group-item">
+                            post 6
+                            <span class="badge">category 3</span>
+                        </a>
+                        <a href="/article/view/7" class="list-group-item">
+                            post 7
+                            <span class="badge">category 1</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </div>
 
 </body>

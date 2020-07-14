@@ -73,65 +73,20 @@ requirejs.config({
 require([
     'vue',
     'vueRouter',
-    'home/vue/index',
-    'error/vue/notFound',
-    'chat/vue/chatList',
-    'chat/vue/chat'
+    'config/routes',
 ], function (
     Vue,
     VueRouter,
-    Home,
-    NotFound,
-    ChatList,
-    Chat
+    routes
 ) {
 
     Vue.use(VueRouter);
 
-    // 0. Если используем модульную систему (например через vue-cli),
-    // импортируем Vue и VueRouter и затем вызываем `Vue.use(VueRouter)`.
-
-    // 1. Определяем компоненты для маршрутов.
-    // Они могут быть импортированы из других файлов
-    var Foo = {
-        template: '<b-alert show> Hello {{ name }}! </b-alert>',
-        data: function () {
-            return {
-                name: 'Sitepoint'
-            }
-        }
-    };
-
-    //var NotFound = {template: ''};
-    //var Home = {template: '<p>главная</p>'};
-    var User = {
-        template: '<div>Пользователь {{ $route.params.id }}</div>',
-        watch: {
-            $route: function (to, from) {
-                console.log(to, from);
-                // обрабатываем изменение параметров маршрута...
-            }
-        }
-    };
-
-    // 2. Определяем несколько маршрутов
-    // Каждый маршрут должен указывать на компонент.
-    // "Компонентом" может быть как конструктор компонента, созданный
-    // через `Vue.extend()`, так и просто объект с опциями компонента.
-    // Мы поговорим о вложенных маршрутах позднее.
-    var routes = [
-        {path: '/', component: Home},
-        {path: '/foo', component: Foo},
-        {path: '/chat', component: ChatList},
-        {path: '/chat/:id', component: Chat},
-        {path: '/user/:id', component: User},
-        {path: '*', component: NotFound}
-    ];
-
     // 3. Создаём экземпляр маршрутизатора и передаём маршруты в опции `routes`
     // Вы можете передавать и дополнительные опции, но пока не будем усложнять.
     var router = new VueRouter({
-        routes: routes // сокращённая запись для `routes: routes`
+        routes: routes, // сокращённая запись для `routes: routes`
+        linkActiveClass: 'active'
     });
 
     // 4. Создаём и монтируем корневой экземпляр приложения.

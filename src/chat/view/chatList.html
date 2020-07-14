@@ -1,1 +1,7 @@
-<div><b-list-group-item v-for="item in items"><router-link :to="/chat/ + item.id">{{ item.name }}</router-link></b-list-group-item></div>
+<div class="list-group">
+    <b-list-group-item class="list-group-item" v-for="item in items">
+        <router-link :to="/chat/ + item.id">
+            {{ item.name }}
+        </router-link>
+    </b-list-group-item>
+</div>
