@@ -78,13 +78,15 @@ require([
     'vueRouter',
     'config/router',
     'bootstrapVue',
-    'text!app/view/navbar.html'
+    'text!app/view/navbar.html',
+    'pages/user/model/authModel'
 ], function (
     Vue,
     VueRouter,
     routerConfig,
     BootstrapVue,
-    navbarTemplate
+    navbarTemplate,
+    AuthModel
 ) {
 
     Vue.use(VueRouter);
@@ -104,18 +106,20 @@ require([
         }
     });
 
+    console.log(AuthModel);
+
     new Vue({
         el: "#app-navbar",
         router: router,
         template: navbarTemplate,
         data: function() {
             return {
-                isLogin: false,
-                username: '',
+                isLogin: AuthModel.getIdentity(),
+                username: 'qwert'
             };
         },
         created: function () {
-            console.log('app created');
+            console.log('navbar created');
         }
     });
 

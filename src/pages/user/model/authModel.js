@@ -18,7 +18,10 @@ define([
         },
         getIdentity: function () {
             return identity;
-        }
+        },
+        isLogin: function () {
+            return identity !== null;
+        },
     };
 
 });
