@@ -1,5 +1,5 @@
 define([
-    'text!home/view/index.html'
+    'text!pages/home/view/index.html'
 ], function (
     chatTemplate
 ) {

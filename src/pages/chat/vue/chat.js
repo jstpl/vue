@@ -1,6 +1,6 @@
 define([
-    'chat/model/chatModel',
-    'text!chat/view/chat.html'
+    'pages/chat/model/chatModel',
+    'text!pages/chat/view/chat.html'
 ], function (
     chatModel,
     chatTemplate

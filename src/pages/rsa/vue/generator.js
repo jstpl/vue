@@ -1,5 +1,5 @@
 define([
-    'text!error/view/notFound.html'
+    'text!pages/rsa/view/generator.html'
 ], function (
     template
 ) {

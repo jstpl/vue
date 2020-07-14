@@ -1,15 +1,19 @@
 define([
-    'vueRouter',
-    'home/vue/index',
-    'error/vue/notFound',
-    'chat/vue/chatList',
-    'chat/vue/chat'
+    'pages/home/vue/index',
+    'pages/error/vue/notFound',
+    'pages/chat/vue/chatList',
+    'pages/chat/vue/chat',
+    'pages/rsa/vue/generator',
+    'pages/uiKit/vue/index',
+    'pages/user/vue/auth'
 ], function (
-    VueRouter,
     Home,
     NotFound,
     ChatList,
-    Chat
+    Chat,
+    RsaGenerator,
+    UiKitIndex,
+    UserAuth
 ) {
 
     // Определяем несколько маршрутов
@@ -18,15 +22,20 @@ define([
     // через `Vue.extend()`, так и просто объект с опциями компонента.
     // передаём маршруты в опции `routes`
 
+    var routes = [
+        {path: '/', component: Home},
+        {path: '/rsa/generator', component: RsaGenerator},
+        {path: '/ui-kit', component: UiKitIndex},
+        {path: '/auth', component: UserAuth},
+        {path: '/chat', component: ChatList},
+        {path: '/chat/:id', component: Chat},
+        {path: '*', component: NotFound}
+    ];
+
     return {
-        routes: [
-            {path: '/', component: Home},
-            {path: '/chat', component: ChatList},
-            {path: '/chat/:id', component: Chat},
-            {path: '*', component: NotFound}
-        ],
-        mode: 'history',
-        linkActiveClass: 'active'
+        //mode: 'history',
+        linkActiveClass: 'active',
+        routes: routes
     };
 
 });

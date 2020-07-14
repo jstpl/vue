@@ -1,10 +1,9 @@
 requirejs.config({
     urlArgs: "bust=" + (new Date()).getTime(), // отмена кэширования скриптов браузером
-    baseUrl: "/src",
+    //baseUrl: "/src",
     paths: {
-        module: '/spa/module',
-        widget: '/spa/widget',
-        app: '/src',
+        pages: '/src/pages',
+        app: '/src/app',
 
         jrails: '/src/vendor/jrails',
         jquery: '/src/vendor/jquery/jquery.min',
@@ -67,20 +66,27 @@ requirejs.config({
             deps: ['jquery']
         }
     },
-    deps: ["vue", "polyfill", "vueRouter"]
+    deps: [
+        "vue",
+        //"polyfill",
+        "vueRouter", 'bootstrapVue'
+    ]
 });
 
 require([
     'vue',
     'vueRouter',
-    'config/router'
+    'config/router',
+    'bootstrapVue'
 ], function (
     Vue,
     VueRouter,
-    routerConfig
+    routerConfig,
+    BootstrapVue
 ) {
 
     Vue.use(VueRouter);
+    Vue.use(BootstrapVue);
 
     // Создаём экземпляр маршрутизатора
     var router = new VueRouter(routerConfig);
