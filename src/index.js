@@ -67,35 +67,31 @@ requirejs.config({
             deps: ['jquery']
         }
     },
-    deps:["vue", "polyfill", "vueRouter"]
+    deps: ["vue", "polyfill", "vueRouter"]
 });
 
 require([
     'vue',
     'vueRouter',
-    'config/routes',
+    'config/router'
 ], function (
     Vue,
     VueRouter,
-    routes
+    routerConfig
 ) {
 
     Vue.use(VueRouter);
 
-    // 3. Создаём экземпляр маршрутизатора и передаём маршруты в опции `routes`
-    // Вы можете передавать и дополнительные опции, но пока не будем усложнять.
-    var router = new VueRouter({
-        routes: routes, // сокращённая запись для `routes: routes`
-        linkActiveClass: 'active'
-    });
+    // Создаём экземпляр маршрутизатора
+    var router = new VueRouter(routerConfig);
 
-    // 4. Создаём и монтируем корневой экземпляр приложения.
+    // Создаём корневой экземпляр приложения.
     // Убедитесь, что передали экземпляр маршрутизатора в опции
     // `router`, чтобы позволить приложению знать о его наличии.
     new Vue({
-        el:"#app",
-        router:router,
-        created: function(){
+        el: "#app",
+        router: router,
+        created: function () {
             console.log('app created');
         }
     });
