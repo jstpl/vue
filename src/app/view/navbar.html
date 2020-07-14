@@ -1,0 +1,41 @@
+<div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <router-link class="navbar-brand" class="nav-link" to="/">
+            <!--<img alt="Vue" style="width: 32px;" src="/resource/image/sf-positive.svg"/>-->
+            Vue
+        </router-link>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <div class="collapse navbar-collapse justify-content-between" id="navbar">
+                <div class="navbar-nav">
+                    <span class="nav-item">
+                        <router-link class="nav-link" to="/chat">Chat</router-link>
+                    </span>
+                    <span class="nav-item">
+                        <router-link class="nav-link" to="/ui-kit">UI Kit</router-link>
+                    </span>
+                    <span class="nav-item">
+                        <router-link class="nav-link" to="/rsa/generator">RSA</router-link>
+                    </span>
+                    <span class="nav-item">
+                        <router-link class="nav-link" to="/qwerty">qwerty</router-link>
+                    </span>
+                </div>
+                <div class="navbar-nav">
+                    <span class="nav-item" v-if=" ! isLogin">
+                        <router-link class="nav-link" to="/auth">
+                            Auth
+                        </router-link>
+                    </span>
+                    <span class="nav-item" v-if="isLogin">
+                        <router-link class="nav-link" to="/logout">
+                            Logout
+                        </router-link>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

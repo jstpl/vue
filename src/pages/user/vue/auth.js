@@ -1,8 +1,10 @@
 define([
     'vue',
+    'pages/user/model/authModel',
     'text!pages/user/view/auth.html'
 ], function (
     Vue,
+    AuthModel,
     template
 ) {
 
@@ -19,7 +21,7 @@ define([
         },
         methods: {
             auth: function () {
-                console.log(this.entity.login);
+                AuthModel.auth(this.entity);
             }
         }
     };

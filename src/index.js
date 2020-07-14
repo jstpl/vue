@@ -77,12 +77,14 @@ require([
     'vue',
     'vueRouter',
     'config/router',
-    'bootstrapVue'
+    'bootstrapVue',
+    'text!app/view/navbar.html'
 ], function (
     Vue,
     VueRouter,
     routerConfig,
-    BootstrapVue
+    BootstrapVue,
+    navbarTemplate
 ) {
 
     Vue.use(VueRouter);
@@ -97,6 +99,21 @@ require([
     new Vue({
         el: "#app",
         router: router,
+        created: function () {
+            console.log('app created');
+        }
+    });
+
+    new Vue({
+        el: "#app-navbar",
+        router: router,
+        template: navbarTemplate,
+        data: function() {
+            return {
+                isLogin: false,
+                username: '',
+            };
+        },
         created: function () {
             console.log('app created');
         }
