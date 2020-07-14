@@ -28,7 +28,7 @@ requirejs.config({
         vueRouter: '/src/vendor/vue-router/vue-router',
         bootstrapVue: '/src/vendor/bootstrap-vue/bootstrap-vue',
         polyfill: '/src/vendor/polyfill/polyfill.min',
-        'jquery-ui': '/src/vendor/jquery-ui/jquery-ui.min',
+        'jquery-ui': '/src/vendor/jquery-ui/jquery-ui.min'
     },
     shim: {
         'director': {
@@ -54,7 +54,7 @@ requirejs.config({
             deps: ['json', 'jquery']
         },
         'vue': {
-            exports: 'Vue',
+            exports: 'Vue'
         },
         'vueRouter': {
             exports: 'VueRouter',
@@ -67,100 +67,47 @@ requirejs.config({
             deps: ['jquery']
         }
     },
-    deps:["vue", "polyfill", "vueRouter"],
+    deps:["vue", "polyfill", "vueRouter"]
 });
 
 require([
     'vue',
     'vueRouter',
-    'bootstrapVue',
-    'polyfill'
+    'home/vue/index',
+    'error/vue/notFound',
+    'chat/vue/chatList',
+    'chat/vue/chat'
 ], function (
     Vue,
     VueRouter,
-    bootstrapVue,
-    polyfill
+    Home,
+    NotFound,
+    ChatList,
+    Chat
 ) {
 
     Vue.use(VueRouter);
-
-    //window.onload = function () {
 
     // 0. Если используем модульную систему (например через vue-cli),
     // импортируем Vue и VueRouter и затем вызываем `Vue.use(VueRouter)`.
 
     // 1. Определяем компоненты для маршрутов.
     // Они могут быть импортированы из других файлов
-    const Foo = {
+    var Foo = {
         template: '<b-alert show> Hello {{ name }}! </b-alert>',
         data: function () {
             return {
                 name: 'Sitepoint'
             }
-        },
-    };
-
-    var chatCollection = [
-        {
-            id: 1,
-            name: 'Bob'
-        },
-        {
-            id: 2,
-            name: 'Alisa'
-        },
-        {
-            id: 3,
-            name: 'Jim'
-        }
-    ];
-
-
-    var chatModel = {
-        oneById: function (id) {
-            id = parseInt(id);
-            for (var k in chatCollection) {
-                var chatEntity = chatCollection[k];
-                if (chatEntity.id === id) {
-                    return chatEntity;
-                }
-            }
-            return null;
         }
     };
 
-    const ChatList = {
-        template: '<div><b-list-group-item v-for="item in items"><router-link :to="/chat/ + item.id">{{ item.name }}</router-link></b-list-group-item></div>',
-        data: function () {
-            return {
-                items: chatCollection
-            };
-        },
-
-    };
-
-    const Chat = {
-        template: '<div>Пользователь {{ chat.name }} (ID:{{ $route.params.id }})</div>',
-        data() {
-            var id = this.$route.params.id;
-            return {
-                chat: chatModel.oneById(id),
-            }
-        },
-        watch: {
-            $route(to, from) {
-                console.log(to, from);
-                // обрабатываем изменение параметров маршрута...
-            }
-        }
-    };
-
-    const NotFound = {template: '<p>Страница не найдена</p>'};
-    const Home = {template: '<p>главная</p>'};
-    const User = {
+    //var NotFound = {template: ''};
+    //var Home = {template: '<p>главная</p>'};
+    var User = {
         template: '<div>Пользователь {{ $route.params.id }}</div>',
         watch: {
-            $route(to, from) {
+            $route: function (to, from) {
                 console.log(to, from);
                 // обрабатываем изменение параметров маршрута...
             }
@@ -172,32 +119,30 @@ require([
     // "Компонентом" может быть как конструктор компонента, созданный
     // через `Vue.extend()`, так и просто объект с опциями компонента.
     // Мы поговорим о вложенных маршрутах позднее.
-    const routes = [
+    var routes = [
         {path: '/', component: Home},
         {path: '/foo', component: Foo},
         {path: '/chat', component: ChatList},
         {path: '/chat/:id', component: Chat},
         {path: '/user/:id', component: User},
-        {path: '*', component: NotFound},
+        {path: '*', component: NotFound}
     ];
 
     // 3. Создаём экземпляр маршрутизатора и передаём маршруты в опции `routes`
     // Вы можете передавать и дополнительные опции, но пока не будем усложнять.
-    const router = new VueRouter({
-        routes // сокращённая запись для `routes: routes`
+    var router = new VueRouter({
+        routes: routes // сокращённая запись для `routes: routes`
     });
 
     // 4. Создаём и монтируем корневой экземпляр приложения.
     // Убедитесь, что передали экземпляр маршрутизатора в опции
     // `router`, чтобы позволить приложению знать о его наличии.
-    const app = new Vue({
+    new Vue({
+        el:"#app",
         router:router,
         created: function(){
             console.log('app created');
-        },
-        el:"#app",
+        }
     });
 
-    //console.log(routes);
-    //}
 });
