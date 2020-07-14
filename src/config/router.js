@@ -25,6 +25,7 @@ define([
             {path: '/chat/:id', component: Chat},
             {path: '*', component: NotFound}
         ],
+        mode: 'history',
         linkActiveClass: 'active'
     };
 
