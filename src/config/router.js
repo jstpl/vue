@@ -5,7 +5,8 @@ define([
     'pages/chat/vue/chat',
     'pages/rsa/vue/generator',
     'pages/uiKit/vue/index',
-    'pages/user/vue/auth'
+    'pages/user/vue/auth',
+    'pages/user/vue/logout'
 ], function (
     Home,
     NotFound,
@@ -13,7 +14,8 @@ define([
     Chat,
     RsaGenerator,
     UiKitIndex,
-    UserAuth
+    UserAuth,
+    UserLogout
 ) {
 
     // Определяем несколько маршрутов
@@ -27,6 +29,7 @@ define([
         {path: '/rsa/generator', component: RsaGenerator},
         {path: '/ui-kit', component: UiKitIndex},
         {path: '/auth', component: UserAuth},
+        {path: '/logout', component: UserLogout},
         {path: '/chat', component: ChatList},
         {path: '/chat/:id', component: Chat},
         {path: '*', component: NotFound}

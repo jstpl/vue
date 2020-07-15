@@ -25,6 +25,7 @@ requirejs.config({
         redux: '/src/vendor/redux/redux.min',
         vue: '/src/vendor/vue/vue.min',
         vueRouter: '/src/vendor/vue-router/vue-router',
+        vuex: '/src/vendor/vuex/vuex',
         bootstrapVue: '/src/vendor/bootstrap-vue/bootstrap-vue',
         polyfill: '/src/vendor/polyfill/polyfill.min',
         'jquery-ui': '/src/vendor/jquery-ui/jquery-ui.min'
@@ -55,6 +56,10 @@ requirejs.config({
         'vue': {
             exports: 'Vue'
         },
+        'vuex': {
+            exports: 'Vuex',
+            deps: ['vue']
+        },
         'vueRouter': {
             exports: 'VueRouter',
             deps: ['vue']
@@ -75,6 +80,7 @@ requirejs.config({
 
 require([
     'vue',
+    'vuex',
     'vueRouter',
     'config/router',
     'bootstrapVue',
@@ -82,6 +88,7 @@ require([
     'pages/user/model/authModel'
 ], function (
     Vue,
+    Vuex,
     VueRouter,
     routerConfig,
     BootstrapVue,
@@ -89,6 +96,8 @@ require([
     AuthModel
 ) {
 
+    //console.log(Vuex);
+    Vue.use(Vuex);
     Vue.use(VueRouter);
     Vue.use(BootstrapVue);
 
@@ -112,15 +121,28 @@ require([
         el: "#app-navbar",
         router: router,
         template: navbarTemplate,
-        data: function() {
+        state: AuthModel,
+        /*data: function() {
             return {
-                isLogin: AuthModel.getIdentity(),
-                username: 'qwert'
+                //user: AuthModel.getters.getIdentity()
             };
-        },
+        },*/
         created: function () {
             console.log('navbar created');
-        }
+        },
+        computed: {
+            user: function () {
+                return AuthModel.state.identity;
+            }
+        },
+        /*methods: {
+            increment: function () {
+                store.commit('increment')
+            },
+            decrement () {
+                store.commit('decrement')
+            }
+        }*/
     });
 
 });

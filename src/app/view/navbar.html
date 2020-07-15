@@ -24,14 +24,14 @@
                     </span>
                 </div>
                 <div class="navbar-nav">
-                    <span class="nav-item" v-if=" ! isLogin">
+                    <span class="nav-item" v-if=" ! user">
                         <router-link class="nav-link" to="/auth">
                             Auth
                         </router-link>
                     </span>
-                    <span class="nav-item" v-if="isLogin">
+                    <span class="nav-item" v-if="user">
                         <router-link class="nav-link" to="/logout">
-                            Logout
+                            {{ user.login }} (Logout)
                         </router-link>
                     </span>
                 </div>

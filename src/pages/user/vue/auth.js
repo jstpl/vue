@@ -1,15 +1,20 @@
 define([
     'vue',
+    'vuex',
     'pages/user/model/authModel',
     'text!pages/user/view/auth.html'
 ], function (
     Vue,
+    Vuex,
     AuthModel,
     template
 ) {
 
+    Vue.use(Vuex);
+
     return {
         template: template,
+        state: AuthModel,
         data: function () {
             return {
                 entity: {
@@ -21,7 +26,8 @@ define([
         },
         methods: {
             auth: function () {
-                AuthModel.auth(this.entity);
+                AuthModel.commit('auth');
+                this.$router.push('/');
             }
         }
     };
