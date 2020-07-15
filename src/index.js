@@ -111,7 +111,7 @@ require([
         el: "#app",
         router: router,
         created: function () {
-            console.log('app created');
+            console.info('app created');
         }
     });
 
@@ -122,27 +122,14 @@ require([
         router: router,
         template: navbarTemplate,
         state: AuthModel,
-        /*data: function() {
-            return {
-                //user: AuthModel.getters.getIdentity()
-            };
-        },*/
         created: function () {
-            console.log('navbar created');
+            console.info('navbar created');
         },
         computed: {
             user: function () {
-                return AuthModel.state.identity;
+                return AuthModel.state.user;
             }
-        },
-        /*methods: {
-            increment: function () {
-                store.commit('increment')
-            },
-            decrement () {
-                store.commit('decrement')
-            }
-        }*/
+        }
     });
 
 });

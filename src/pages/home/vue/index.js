@@ -1,11 +1,11 @@
 define([
     'text!pages/home/view/index.html'
 ], function (
-    chatTemplate
+    template
 ) {
 
     return {
-        template: chatTemplate
+        template: template
     };
 
 });

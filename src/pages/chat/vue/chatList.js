@@ -3,11 +3,11 @@ define([
     'text!pages/chat/view/chatList.html'
 ], function (
     chatModel,
-    chatListTemplate
+    template
 ) {
 
     return {
-        template: chatListTemplate,
+        template: template,
             data: function () {
         return {
             items: chatModel.all()

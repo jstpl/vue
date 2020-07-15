@@ -8,42 +8,40 @@ define([
 
     Vue.use(Vuex);
 
-    var identityStorage = {
-        set: function (identity) {
-            localStorage.setItem('authModelIdentity', JSON.stringify(identity));
+    var Storage = {
+        set: function (user) {
+            localStorage.setItem('appUser', JSON.stringify(user));
         },
         get: function () {
-            return JSON.parse(localStorage.getItem('authModelIdentity'));
+            return JSON.parse(localStorage.getItem('appUser'));
         }
     };
 
     var store = new Vuex.Store({
         state: {
-            identity: null
+            user: null
         },
         mutations: {
             auth: function (state) {
-                state.identity = {
+                state.user = {
                     id: 1,
                     login: 'user11111'
                 };
-                identityStorage.set(state.identity);
-                console.log(state.identity);
+                Storage.set(state.user);
             },
             logout: function (state) {
-                state.identity = null;
-                identityStorage.set(state.identity);
+                state.user = null;
+                Storage.set(state.user);
             },
             init: function (state) {
-                state.identity = identityStorage.get();
+                state.user = Storage.get();
             }
         },
         getters: {
-            getIdentity: function (state) {
-                return state.identity;
+            getUser: function (state) {
+                return state.user;
             }
         }
-
     });
 
     store.commit('init');

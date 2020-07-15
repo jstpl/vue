@@ -3,11 +3,11 @@ define([
     'text!pages/chat/view/chat.html'
 ], function (
     chatModel,
-    chatTemplate
+    template
 ) {
 
     return {
-        template: chatTemplate,
+        template: template,
         data: function() {
             var id = this.$route.params.id;
             return {
